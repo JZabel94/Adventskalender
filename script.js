@@ -4,11 +4,6 @@ const resetButton = document.getElementById("reset");
 
 let opened = loadOpened();
 
-function currentAdventDay() {
-  const now = new Date();
-  return now.getMonth() === 11 && now.getDate() <= 24 ? now.getDate() : null;
-}
-
 function updateProgress() {
   progress.textContent = `${opened.size} von 24 Türchen geöffnet`;
 }
@@ -20,11 +15,21 @@ function setDoorOpen(door) {
 }
 
 function createDoor(day) {
+  const locked = isLocked(day) && !opened.has(day);
   const door = document.createElement("a");
   door.className = "door";
-  door.href = `tuer.html?tag=${day}`;
   door.dataset.day = String(day);
-  door.setAttribute("aria-label", `Türchen ${day} öffnen`);
+
+  if (locked) {
+    door.classList.add("is-locked");
+    door.setAttribute("aria-disabled", "true");
+    door.setAttribute("aria-label", `Türchen ${day} ist noch nicht verfügbar`);
+    door.tabIndex = -1;
+    door.addEventListener("click", (event) => event.preventDefault());
+  } else {
+    door.href = detailUrl(day);
+    door.setAttribute("aria-label", `Türchen ${day} öffnen`);
+  }
 
   const inner = document.createElement("div");
   inner.className = "door-inner";
@@ -40,16 +45,32 @@ function createDoor(day) {
   knob.className = "knob";
   knob.setAttribute("aria-hidden", "true");
 
-  front.append(number, knob);
+  if (locked) {
+    const lock = document.createElement("span");
+    lock.className = "lock";
+    lock.setAttribute("aria-hidden", "true");
+
+    const hint = document.createElement("span");
+    hint.className = "lock-label";
+    hint.textContent = "Noch nicht verfügbar";
+
+    front.append(number, lock, hint);
+  } else {
+    front.append(number, knob);
+  }
 
   const back = document.createElement("div");
   back.className = "door-face door-back";
+
+  const backNumber = document.createElement("span");
+  backNumber.className = "number";
+  backNumber.textContent = String(day);
 
   const label = document.createElement("span");
   label.className = "back-label";
   label.textContent = "Geöffnet";
 
-  back.append(label);
+  back.append(backNumber, label);
   inner.append(front, back);
   door.append(inner);
 

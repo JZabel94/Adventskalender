@@ -7,6 +7,7 @@ const MOTIFS = {
 
 const detail = document.getElementById("detail");
 const doorNav = document.getElementById("door-nav");
+const backLink = document.getElementById("back-link");
 
 function getDay() {
   const value = new URLSearchParams(window.location.search).get("tag");
@@ -105,26 +106,52 @@ function createContent(entry) {
   }
 }
 
+function addNavItem(fragment, target, label) {
+  const locked = isLocked(target) && !loadOpened().has(target);
+  const item = locked ? document.createElement("span") : document.createElement("a");
+
+  item.className = locked ? "nav-link is-locked" : "nav-link";
+
+  if (locked) {
+    item.setAttribute("aria-disabled", "true");
+    item.textContent = `${label} (gesperrt)`;
+  } else {
+    item.href = detailUrl(target);
+    item.textContent = label;
+  }
+
+  fragment.append(item);
+}
+
 function renderNavigation(day) {
   const fragment = document.createDocumentFragment();
 
   if (day > 1) {
-    const previous = document.createElement("a");
-    previous.className = "nav-link";
-    previous.href = `tuer.html?tag=${day - 1}`;
-    previous.textContent = "Vorheriges Türchen";
-    fragment.append(previous);
+    addNavItem(fragment, day - 1, "Vorheriges Türchen");
   }
 
   if (day < 24) {
-    const next = document.createElement("a");
-    next.className = "nav-link";
-    next.href = `tuer.html?tag=${day + 1}`;
-    next.textContent = "Nächstes Türchen";
-    fragment.append(next);
+    addNavItem(fragment, day + 1, "Nächstes Türchen");
   }
 
   doorNav.replaceChildren(fragment);
+}
+
+function renderLocked(day) {
+  document.title = `Türchen ${day} – Adventskalender`;
+
+  const number = document.createElement("p");
+  number.className = "detail-day";
+  number.textContent = String(day).padStart(2, "0");
+
+  const heading = document.createElement("h1");
+  heading.textContent = `Türchen ${day}`;
+
+  const text = document.createElement("p");
+  text.className = "detail-text";
+  text.textContent = `Dieses Türchen ist noch nicht verfügbar. Es öffnet sich ab dem ${day}. Dezember.`;
+
+  detail.replaceChildren(number, heading, text);
 }
 
 function renderError() {
@@ -142,9 +169,15 @@ function renderError() {
 
 function render() {
   const day = getDay();
+  backLink.href = calendarUrl();
 
   if (day === null || !ADVENT_CONTENT[day]) {
     renderError();
+    return;
+  }
+
+  if (isLocked(day) && !loadOpened().has(day)) {
+    renderLocked(day);
     return;
   }
 

@@ -8,7 +8,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 2",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   3: {
     type: "audio",
@@ -20,7 +20,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 4",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   5: {
     type: "image",
@@ -32,7 +32,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 6",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   7: {
     type: "text",
@@ -43,7 +43,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 8",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   9: {
     type: "audio",
@@ -55,7 +55,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 10",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   11: {
     type: "image",
@@ -67,7 +67,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 12",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   13: {
     type: "text",
@@ -78,7 +78,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 14",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   15: {
     type: "audio",
@@ -90,7 +90,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 16",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   17: {
     type: "image",
@@ -102,7 +102,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 18",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   19: {
     type: "text",
@@ -113,7 +113,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 20",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   21: {
     type: "audio",
@@ -125,7 +125,7 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 22",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   },
   23: {
     type: "image",
@@ -137,6 +137,6 @@ const ADVENT_CONTENT = {
     type: "notice",
     title: "Türchen 24",
     text: "Heute bist du dran!",
-    note: "Du bekommst heute eine Überraschung."
+    note: "Ich bekomme heute eine Überraschung."
   }
 };
